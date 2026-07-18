@@ -1,69 +1,45 @@
-Building-and-operating-a-mini-SOC-system/
-│
-├── README.md
-│
-├── 01-SOC-Architecture/
-│   ├── architecture-diagram.png
-│   └── architecture.md
-│
-├── 02-Wazuh-SIEM/
-│   ├── installation.md
-│   ├── ubuntu-server-setup.md
-│   ├── wazuh-configuration.md
-│   └── screenshots/
-│       ├── wazuh-dashboard.png
-│       └── manager-status.png
-│
-├── 03-Windows-Endpoint-Onboarding/
-│   ├── wazuh-agent-deployment.ps1
-│   ├── tactical-rmm-deployment.md
-│   └── agent-registration.md
-│
-├── 04-Sysmon-Integration/
-│   ├── install-sysmon.ps1
-│   ├── sysmonconfig.xml
-│   ├── event-analysis.md
-│   └── screenshots/
-│
-├── 05-File-Integrity-Monitoring-FIM/
-│   ├── fim-configuration.md
-│   ├── monitored-paths.md
-│   ├── detection-examples.md
-│   └── screenshots/
-│
-├── 06-Suricata-Network-IDS/
-│   ├── installation.md
-│   ├── suricata.yaml
-│   ├── rules/
-│   │   └── custom.rules
-│   ├── eve-json-analysis.md
-│   └── screenshots/
-│
-├── 07-YARA-Malware-Detection/
-│   ├── yara-installation.md
-│   ├── rules/
-│   │   └── malware_rules.yar
-│   ├── wazuh-integration.md
-│   └── detection-example.md
-│
-├── 08-VirusTotal-Threat-Intelligence/
-│   ├── integration.md
-│   ├── api-setup.md
-│   └── investigation-workflow.md
-│
-├── 09-Detection-Engineering/
-│   ├── MITRE-ATTACK-Mapping.md
-│   ├── brute-force-detection.md
-│   ├── suspicious-powershell.md
-│   ├── malware-execution.md
-│   └── unauthorized-file-change.md
-│
-├── 10-Incident-Response/
-│   ├── alert-triage.md
-│   ├── investigation-process.md
-│   └── response-playbooks.md
-│
-└── Screenshots/
-    ├── alerts/
-    ├── dashboards/
-    └── investigations/
+# Enterprise SOC Lab - Wazuh Detection Engineering
+
+## Overview
+
+A complete SOC monitoring environment built using Wazuh SIEM running on Ubuntu Server.
+
+The lab demonstrates endpoint monitoring, network threat detection, malware analysis,
+and threat intelligence integration.
+
+## Architecture
+
+Components:
+
+- Wazuh Manager on Ubuntu Server
+- Windows 10/11 endpoints
+- Linux endpoint
+- Wazuh Agents
+- Sysmon telemetry collection
+- File Integrity Monitoring (FIM)
+- Suricata IDS
+- YARA malware detection
+- VirusTotal Threat Intelligence Integration
+- Tactical RMM automation
+
+## Features
+
+### Endpoint Monitoring
+- Windows Event Log collection
+- Process monitoring using Sysmon
+- Endpoint security visibility
+
+### File Integrity Monitoring
+- Detect unauthorized file changes
+- Monitor critical system directories
+- Generate security alerts
+
+### Malware Detection
+- YARA rule-based file scanning
+- VirusTotal reputation checking
+- Malware investigation workflow
+
+### Network Detection
+- Suricata IDS deployment
+- Network traffic analysis
+- Signature-based threat detection
