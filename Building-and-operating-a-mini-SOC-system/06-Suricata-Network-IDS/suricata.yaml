@@ -1,0 +1,40 @@
+%YAML 1.1
+---
+# Suricata configuration (excerpt) — Mini-SOC lab
+
+vars:
+  address-groups:
+    HOME_NET: "[192.168.1.0/24]"
+    EXTERNAL_NET: "!$HOME_NET"
+
+af-packet:
+  - interface: eth1
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+
+outputs:
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types:
+        - alert:
+            payload: yes
+            metadata: yes
+        - http:
+        - dns:
+        - tls:
+        - flow:
+
+default-rule-path: /etc/suricata/rules
+rule-files:
+  - suricata.rules
+  - custom.rules
+
+logging:
+  default-log-level: notice
+  outputs:
+    - file:
+        enabled: yes
+        filename: /var/log/suricata/suricata.log

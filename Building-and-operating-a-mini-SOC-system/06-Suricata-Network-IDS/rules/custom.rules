@@ -1,0 +1,20 @@
+# Custom Suricata rules — Mini-SOC lab
+# SID range reserved for local/custom rules: 1000000–1000099
+
+# SSH brute force — 5+ attempts to port 22 from the same source within 60s
+alert tcp any any -> $HOME_NET 22 (msg:"SSH Brute Force Attempt"; flow:to_server; \
+  threshold:type both, track by_src, count 5, seconds 60; \
+  classtype:attempted-recon; sid:1000001; rev:1;)
+
+# Basic SQL injection pattern in HTTP request
+alert http any any -> $HOME_NET any (msg:"Possible SQL Injection Attempt"; \
+  flow:to_server,established; http.uri; content:"UNION SELECT"; nocase; \
+  classtype:web-application-attack; sid:1000002; rev:1;)
+
+# Suspicious outbound connection to a non-standard high port (possible C2)
+alert tcp $HOME_NET any -> $EXTERNAL_NET !80,!443,!53 (msg:"Outbound connection to unusual port"; \
+  flow:to_server,established; classtype:trojan-activity; sid:1000003; rev:1;)
+
+# DNS query for a suspicious TLD often abused for C2/phishing infra
+alert dns $HOME_NET any -> any 53 (msg:"DNS query to suspicious TLD"; \
+  dns.query; content:".xyz"; nocase; classtype:bad-unknown; sid:1000004; rev:1;)

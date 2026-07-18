@@ -1,0 +1,42 @@
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>SHA256</HashAlgorithms>
+  <CheckRevocation/>
+  <EventFiltering>
+
+    <!-- Event ID 1: Process creation -->
+    <ProcessCreate onmatch="exclude">
+      <Image condition="end with">svchost.exe</Image>
+    </ProcessCreate>
+
+    <!-- Event ID 3: Network connection -->
+    <NetworkConnect onmatch="exclude">
+      <DestinationPort condition="is">443</DestinationPort>
+      <Image condition="end with">chrome.exe</Image>
+    </NetworkConnect>
+
+    <!-- Event ID 7: Image/DLL loaded -->
+    <ImageLoad onmatch="include">
+      <Signed condition="is">false</Signed>
+    </ImageLoad>
+
+    <!-- Event ID 11: File created -->
+    <FileCreate onmatch="include">
+      <TargetFilename condition="contains">\Users\</TargetFilename>
+      <TargetFilename condition="end with">.exe</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
+      <TargetFilename condition="end with">.bat</TargetFilename>
+    </FileCreate>
+
+    <!-- Event ID 13: Registry value set -->
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">\Run\</TargetObject>
+      <TargetObject condition="contains">\RunOnce\</TargetObject>
+    </RegistryEvent>
+
+    <!-- Event ID 22: DNS query -->
+    <DnsQuery onmatch="exclude">
+      <QueryName condition="end with">.microsoft.com</QueryName>
+    </DnsQuery>
+
+  </EventFiltering>
+</Sysmon>
