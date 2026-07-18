@@ -3,11 +3,9 @@
 ### End-to-End Security Operations Center Lab — Detection, Monitoring & Incident Response
 
 [![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-blue)](https://wazuh.com)
-[![ELK Stack](https://img.shields.io/badge/Log%20Management-ELK%20Stack-yellow)](https://www.elastic.co)
 [![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red)](https://attack.mitre.org)
 [![Suricata](https://img.shields.io/badge/NIDS-Suricata-orange)](https://suricata.io)
 [![YARA](https://img.shields.io/badge/Malware%20Detection-YARA-purple)](https://virustotal.github.io/yara/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](#)
 
 ---
 
